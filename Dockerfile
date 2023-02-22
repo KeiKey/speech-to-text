@@ -1,8 +1,6 @@
 FROM php:8.1-fpm-alpine
 
-RUN mkdir -p /var/www/html
-
-WORKDIR /var/www/html
+WORKDIR /var/www
 
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 
