@@ -23,7 +23,7 @@
                         </thead>
                         <tbody>
                         @foreach($vehicles as $vehicle)
-                            <tr>
+                            <tr onclick="window.location='{{ route('vehicles.show', $vehicle) }}';" role="button">
                                 <th scope="row">{{ $vehicle->vehicle_code }}</th>
                                 <td>{{ $vehicle->brand->name }}</td>
                                 <td>{{ $vehicle->size }}</td>
