@@ -6,6 +6,7 @@ use App\Enums\ImportStatus;
 use App\Enums\ImportType;
 use App\Events\ImportCreated;
 use App\Models\Import\Import as ImportModel;
+use App\Models\User\User;
 use Illuminate\Console\Command;
 
 class ImportFilesCommand extends Command
@@ -28,7 +29,8 @@ class ImportFilesCommand extends Command
     {
         /** @var ImportModel $vehicleImportModel */
         $vehicleImportModel = ImportModel::query()->create([
-            'file_name'   => 'vehicles.xlsx',
+            'uploader_id' => User::query()->inRandomOrder()->first()->id,
+            'file_name'   => 'import-files/vehicles.xlsx',
             'import_type' => ImportType::VEHICLE,
             'status'      => ImportStatus::default()
         ]);
@@ -36,7 +38,8 @@ class ImportFilesCommand extends Command
 
         /** @var ImportModel $partImportModel */
         $partImportModel = ImportModel::query()->create([
-            'file_name'   => 'parts.csv',
+            'uploader_id' => User::query()->inRandomOrder()->first()->id,
+            'file_name'   => 'import-files/parts.csv',
             'import_type' => ImportType::PART,
             'status'      => ImportStatus::default()
         ]);

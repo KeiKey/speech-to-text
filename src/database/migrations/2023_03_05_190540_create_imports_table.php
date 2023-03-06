@@ -17,7 +17,7 @@ class CreateImportsTable extends Migration
     {
         Schema::create('imports', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('uploader_id')->unsigned()->nullable();
+            $table->bigInteger('uploader_id')->unsigned();
             $table->string('file_name');
             $table->string('import_type')->comment(ImportType::toString());
             $table->string('status')->default(ImportStatus::default())->comment(ImportType::toString());

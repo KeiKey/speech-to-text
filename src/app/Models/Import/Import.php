@@ -4,9 +4,8 @@ namespace App\Models\Import;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Carbon;
 
 /**
  * @property int id
@@ -21,7 +20,7 @@ use Illuminate\Support\Facades\Storage;
  */
 class Import extends Model
 {
-    use HasFactory, RelationshipTrait, RelationshipTrait, ScopesTrait, SoftDeletes;
+    use HasFactory, RelationshipTrait, RelationshipTrait, ScopesTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -44,7 +43,7 @@ class Import extends Model
      */
     public function delete(): ?bool
     {
-        Storage::delete("import-files/{$this->file_name}");
+        Storage::delete($this->file_name);
 
         return parent::delete();
     }

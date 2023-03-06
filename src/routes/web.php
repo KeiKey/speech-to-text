@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ImportController;
+use App\Http\Controllers\VehicleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,4 +21,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::resource('imports', ImportController::class)->only('create', 'store');
+
+    Route::resource('vehicles', VehicleController::class)->only(['index', 'show']);
+});

@@ -6,6 +6,7 @@ use App\Models\Brand\Brand;
 use App\Models\Part\Part;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
@@ -27,10 +28,10 @@ trait RelationshipTrait
     /**
      * Return the Parts that belong to the Vehicle.
      *
-     * @return HasMany
+     * @return BelongsToMany
      */
-    public function parts(): HasMany
+    public function parts(): BelongsToMany
     {
-        return $this->hasMany(Part::class);
+        return $this->belongsToMany(Part::class)->withTimestamps();
     }
 }

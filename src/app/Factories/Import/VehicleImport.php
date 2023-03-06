@@ -21,10 +21,10 @@ class VehicleImport extends BaseImport
      */
     public function import(): self
     {
-        $vehiclesData = Excel::toArray(app(VehiclesImport::class), Storage::path("import-files/{$this->importModel->file_name}"))[0];
+        $vehiclesData = Excel::toArray(app(VehiclesImport::class), Storage::path($this->importModel->file_name))[0];
         $result = [];
 
-        foreach ($vehiclesData as $vehicleData) {
+        foreach ($vehiclesData as $row => $vehicleData) {
             try {
                 DB::beginTransaction();
                 $vehicleData = $this->validateRow($vehicleData);
@@ -51,9 +51,9 @@ class VehicleImport extends BaseImport
 
                 DB::commit();
 
-                $result[$vehicleData['vehicle_id']] = 'Vehicle imported.';
+                $result[$row+1] = 'Vehicle imported.';
             } catch (Exception $exception) {
-                $result[$vehicleData['vehicle_id']] = $exception->getMessage();
+                $result[$row+1] = $exception->getMessage();
 
                 DB::rollBack();
             }

@@ -22,10 +22,10 @@ class PartImport extends BaseImport
      */
     public function import(): self
     {
-        $partsData = Excel::toArray(app(PartsImport::class), Storage::path("import-files/{$this->importModel->file_name}"))[0];
+        $partsData = Excel::toArray(app(PartsImport::class), Storage::path($this->importModel->file_name))[0];
         $result = [];
 
-        foreach ($partsData as $partData) {
+        foreach ($partsData as $row => $partData) {
             try {
                 DB::beginTransaction();
                 $partData = $this->validateRow($partData);
@@ -46,9 +46,9 @@ class PartImport extends BaseImport
 
                 DB::commit();
 
-                $result[$partData['id']] = 'Part imported.';
+                $result[$row+1] = 'Part imported.';
             } catch (Exception $exception) {
-                $result[$partData['id']] = $exception->getMessage();
+                $result[$row+1] = $exception->getMessage();
 
                 DB::rollBack();
             }
