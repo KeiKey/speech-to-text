@@ -21,8 +21,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::middleware(['auth', 'verified'])->group(function () {
-    Route::resource('imports', ImportController::class)->only('create', 'store');
+Route::resource('imports', ImportController::class)->only('create', 'store');
 
-    Route::resource('vehicles', VehicleController::class)->only(['index', 'show']);
-});
+Route::middleware('auth')->resource('vehicles', VehicleController::class)->only(['index', 'show']);

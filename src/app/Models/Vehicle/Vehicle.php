@@ -29,7 +29,7 @@ use Illuminate\Support\Carbon;
  */
 class Vehicle extends Model
 {
-    use HasFactory, RelationshipTrait, RelationshipTrait, ScopesTrait, SoftDeletes;
+    use HasFactory, RelationshipTrait, ScopesTrait, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
