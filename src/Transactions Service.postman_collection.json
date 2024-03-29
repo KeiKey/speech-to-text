@@ -1,0 +1,610 @@
+{
+	"info": {
+		"_postman_id": "4c02b3d9-692b-4979-8f0e-fe0da471553a",
+		"name": "Transactions Service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23852570"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\" : \"test@gmail.com\",\r\n    \"password\": \"password\",\r\n    \"name\" : \"User\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/{{version}}/companies",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"{{version}}",
+						"companies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI5ODZmZmQ1My01OWYzLTQ0ZmUtOTExYy1lNjBmZDg3ZmE1YWMiLCJqdGkiOiJlN2YyNjRjMDA1ZTNjN2JmNzNhYjBiNGNmOTEzZGRiZmEzMWZjYTQwYjlmNGVkZGQwZGM3NGM0MWZhYTNkY2Q0Nzc4MzMyZDVmMmU4Nzc4OCIsImlhdCI6MTY3NjQwNTg0Mi43MTA4ODMsIm5iZiI6MTY3NjQwNTg0Mi43MTA4ODgsImV4cCI6MTcwNzk0MTg0Mi43MDYzOTEsInN1YiI6IjIiLCJzY29wZXMiOltdfQ.PbR8YlfyIzeJ-QH5ePKDVB42-TIyOPUZFPjDaRC7-W94AdzUKWqtofhFz4q08aKVMgXFqtcxKWJ3_gMoHej0adtnOg4KkpG4N4byhKZpUiKGnRK4bDD31xgoM_iEWiJrdHrfXVVZilJq125Nxn2d2tO2HOYqIrY8l2ppegYjMsMYDPxUXEZl_HZCAJxQ2ABfp6pNiXnR2b7fm8MWLrbcZSCDs-HaP4gB9DssgOYGLMn45d4PwRo-Cy4V1ZYQfqX2DePh97qu5BxMzT6_cumbK2PZzvm9D3sQbe5JkXWhw8A-YPTflg0oH6Crjccp7rXeY96ZNGK20zu1cKnJqE72t0BpfMY2zNFbzbKNyKXh7kBXXSpJQy9LRFbmW1qXZbd6HEbNah46DUnrKOjSxK6We5Mh1CCS6AgBBI-JzzVMGVcCByuDAxx4nhZ0mui-neO4CeIot1j6SV2MkFzuJ2QKh_IaP7Wuqpf0cAqxddrnDkmHQXYnZmSipIW9B8nQEe0l9DMFG6khyNE8CWcWm6r2CDX_W5JT8qpAJ93M-lQ3Mb9C3RBUIIpV6SKo61L2VO55_hC3y75tGNZ-Szp9lWnIwHLzQwmNa_UU_DXrK4FB7jbzKjE4d39CCL8XpxUOwle7DtPi1y5mDypPjLgkhNjlH3lab-Af_ZIFeELtsTa6LBY",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\" : \"test@gmail.com\",\r\n    \"password\": \"password\",\r\n    \"name\" : \"Admin\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/companies",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"companies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Companies List",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/api/{{version}}/companies",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"{{version}}",
+						"companies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Single Company",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/api/{{version}}/companies/{{companyuuid}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"{{version}}",
+						"companies",
+						"{{companyuuid}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Company",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"company-name\",\r\n    \"email\": \"company-email@gmail.com\",\r\n    \"address\": \"test address\",\r\n    \"vat_number\": \"1001\",\r\n    \"contact_name\": \"Contact name\",\r\n    \"contact_phone\": \"Contact phone\",\r\n    \"contact_email\": \"contact-email@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/{{version}}/companies",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"{{version}}",
+						"companies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Company",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"updated-company-test\",\r\n    \"email\": \"updated-company-email@mail.com\",\r\n    \"address\": \"updated-test address\",\r\n    \"vat_number\": \"updated-1001\",\r\n    \"contact_name\": \"updated-Contact name\",\r\n    \"contact_phone\": \"updated-Contact phone\",\r\n    \"contact_email\": \"updated-contact-email@mail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/{{version}}/companies/{{companyuuid}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"{{version}}",
+						"companies",
+						"{{companyuuid}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Individuals List",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"updated-company-test\",\r\n    \"email\": \"updated-company-email@mail.com\",\r\n    \"address\": \"updated-test address\",\r\n    \"vat_number\": \"updated-1001\",\r\n    \"contact_name\": \"updated-Contact name\",\r\n    \"contact_phone\": \"updated-Contact phone\",\r\n    \"contact_email\": \"updated-contact-email@mail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/{{version}}/individuals",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"{{version}}",
+						"individuals"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Single Individual",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\" : \"test@gmail.com\",\r\n    \"password\": \"password\",\r\n    \"name\" : \"Admin\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/{{version}}/individuals/{{individualuuid}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"{{version}}",
+						"individuals",
+						"{{individualuuid}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Individual",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"individual-name\",\r\n    \"email\": \"individual-email@gmail.com\",\r\n    \"address\": \"test address\",\r\n    \"vat_number\": \"1001\",\r\n    \"phone_number\": \"Phone number\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/{{version}}/individuals",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"{{version}}",
+						"individuals"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Individual",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"individual-name\",\r\n    \"email\": \"individual-email@gmail.com\",\r\n    \"address\": \"test address\",\r\n    \"vat_number\": \"1001\",\r\n    \"phone_number\": \"Phone number\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/{{version}}/individuals/{{individualuuid}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"{{version}}",
+						"individuals",
+						"{{individualuuid}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Transactions List",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\" : \"test@gmail.com\",\r\n    \"password\": \"password\",\r\n    \"name\" : \"Admin\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/{{version}}/transactions",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"{{version}}",
+						"transactions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Single Transaction",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\" : \"test@gmail.com\",\r\n    \"password\": \"password\",\r\n    \"name\" : \"Admin\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/{{version}}/companies",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"{{version}}",
+						"companies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Transaction",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"amount\" : \"1111\",\r\n    \"description\": \"description\",\r\n    \"status\": \"Pending\",\r\n    \"issuer\": \"{{companyuuid}}\",\r\n    \"transaction_date\": \"2023-02-14\",\r\n    \"currency\" : \"Eur\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/{{version}}/transactions",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"{{version}}",
+						"transactions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Transaction",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"description\": \"updated-description\",\r\n    \"status\": \"Processed\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/{{version}}/transactions/{{transactionuuid}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"{{version}}",
+						"transactions",
+						"{{transactionuuid}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://127.0.0.1:8000"
+		},
+		{
+			"key": "version",
+			"value": "v1"
+		},
+		{
+			"key": "email",
+			"value": "test@gmail.com",
+			"type": "string"
+		},
+		{
+			"key": "password",
+			"value": "password",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI5ODZmZmQ1My01OWYzLTQ0ZmUtOTExYy1lNjBmZDg3ZmE1YWMiLCJqdGkiOiJlN2YyNjRjMDA1ZTNjN2JmNzNhYjBiNGNmOTEzZGRiZmEzMWZjYTQwYjlmNGVkZGQwZGM3NGM0MWZhYTNkY2Q0Nzc4MzMyZDVmMmU4Nzc4OCIsImlhdCI6MTY3NjQwNTg0Mi43MTA4ODMsIm5iZiI6MTY3NjQwNTg0Mi43MTA4ODgsImV4cCI6MTcwNzk0MTg0Mi43MDYzOTEsInN1YiI6IjIiLCJzY29wZXMiOltdfQ.PbR8YlfyIzeJ-QH5ePKDVB42-TIyOPUZFPjDaRC7-W94AdzUKWqtofhFz4q08aKVMgXFqtcxKWJ3_gMoHej0adtnOg4KkpG4N4byhKZpUiKGnRK4bDD31xgoM_iEWiJrdHrfXVVZilJq125Nxn2d2tO2HOYqIrY8l2ppegYjMsMYDPxUXEZl_HZCAJxQ2ABfp6pNiXnR2b7fm8MWLrbcZSCDs-HaP4gB9DssgOYGLMn45d4PwRo-Cy4V1ZYQfqX2DePh97qu5BxMzT6_cumbK2PZzvm9D3sQbe5JkXWhw8A-YPTflg0oH6Crjccp7rXeY96ZNGK20zu1cKnJqE72t0BpfMY2zNFbzbKNyKXh7kBXXSpJQy9LRFbmW1qXZbd6HEbNah46DUnrKOjSxK6We5Mh1CCS6AgBBI-JzzVMGVcCByuDAxx4nhZ0mui-neO4CeIot1j6SV2MkFzuJ2QKh_IaP7Wuqpf0cAqxddrnDkmHQXYnZmSipIW9B8nQEe0l9DMFG6khyNE8CWcWm6r2CDX_W5JT8qpAJ93M-lQ3Mb9C3RBUIIpV6SKo61L2VO55_hC3y75tGNZ-Szp9lWnIwHLzQwmNa_UU_DXrK4FB7jbzKjE4d39CCL8XpxUOwle7DtPi1y5mDypPjLgkhNjlH3lab-Af_ZIFeELtsTa6LBY",
+			"type": "string"
+		},
+		{
+			"key": "companyuuid",
+			"value": "589c5dc4-307a-4bdd-aed8-17fbd5026237",
+			"type": "string"
+		},
+		{
+			"key": "individualuuid",
+			"value": "107cf841-3ea4-4558-94f3-2e0bf63c84c2",
+			"type": "string"
+		},
+		{
+			"key": "transactionuuid",
+			"value": "d4067823-b4d7-43a8-a32a-88f4d85309da",
+			"type": "string"
+		}
+	]
+}
