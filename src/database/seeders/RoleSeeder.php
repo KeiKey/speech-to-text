@@ -16,7 +16,7 @@ class RoleSeeder extends Seeder
     {
         Role::query()
             ->create(['name' => 'auditor', 'guard_name' => 'api'])
-            ->givePermissionTo(['create_listing', 'edit_listing', 'create_listing_review']);
+            ->givePermissionTo(['create_listing', 'edit_listing', 'create_listing_assessment']);
 
         Role::query()
             ->create(['name' => 'inspector', 'guard_name' => 'api'])

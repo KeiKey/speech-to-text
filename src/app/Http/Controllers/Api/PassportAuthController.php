@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Api\V1\BaseController;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
+use App\Http\Resources\UserResource;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use App\Models\User\User;
@@ -25,7 +26,9 @@ class PassportAuthController extends BaseController
 
             $token = $user->createToken('LaravelAuthApp')->accessToken;
 
-            return $this->sendResponse(['token' => $token], '', 201);
+            $userResource = (new UserResource($user))->toArray($request);
+
+            return $this->sendResponse(array_merge($userResource, ['token' => $token]), '', 201);
         } catch (Exception $exception) {
             return $this->sendResponse([],  $exception->getMessage(), 500);
         }

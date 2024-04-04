@@ -15,10 +15,10 @@ class PermissionSeeder extends Seeder
     public function run(): void
     {
         $permissions = [
-            ['name' => 'create_listing',        'guard_name' => 'api'],
-            ['name' => 'edit_listing',          'guard_name' => 'api'],
-            ['name' => 'create_listing_review', 'guard_name' => 'api'],
-            ['name' => 'work_listing',          'guard_name' => 'api']
+            ['name' => 'create_listing',            'guard_name' => 'api'],
+            ['name' => 'edit_listing',              'guard_name' => 'api'],
+            ['name' => 'create_listing_assessment', 'guard_name' => 'api'],
+            ['name' => 'work_listing',              'guard_name' => 'api']
         ];
 
         Permission::query()->insert($permissions);
