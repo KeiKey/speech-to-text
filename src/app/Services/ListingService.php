@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Listing\Listing;
 use App\Models\User\User;
+use App\Notifications\ListingAssigned;
 use Illuminate\Support\Carbon;
 
 class ListingService
@@ -29,6 +30,10 @@ class ListingService
             'contact_phone' => $data['contact_phone'],
             'contact_email' => $data['contact_email']
         ]);
+
+        if ($listing->inspector) {
+            $listing->inspector->notify(new ListingAssigned($listing));
+        }
 
         return $listing;
     }
