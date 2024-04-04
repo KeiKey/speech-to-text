@@ -25,7 +25,7 @@ class ListingResource extends JsonResource
             'contact_phone' => $this->contact_phone,
             'contact_email' => $this->contact_email,
             'creator'       => new UserResource($this->creator),
-            'inspector'     => $this->inspector_id ?: new UserResource($this->inspector),
+            'inspector'     => $this->inspector_id ? new UserResource($this->inspector) : null,
         ];
     }
 }

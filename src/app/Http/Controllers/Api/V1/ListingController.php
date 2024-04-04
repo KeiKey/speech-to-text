@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Http\Requests\ListingRequest;
+use App\Http\Requests\CreateListingRequest;
+use App\Http\Requests\UpdateListingRequest;
 use App\Http\Resources\ListingResource;
 use App\Models\Listing\Listing;
 use App\Services\ListingService;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Exception;
 
 class ListingController extends BaseController
@@ -26,7 +26,7 @@ class ListingController extends BaseController
     /**
      * Store a newly created resource in storage.
      */
-    public function store(ListingRequest $request): JsonResponse
+    public function store(CreateListingRequest $request): JsonResponse
     {
         try {
             $listing = $this->listingService->createListing($request->validated(), $request->user());
@@ -48,7 +48,7 @@ class ListingController extends BaseController
     /**
      * Update the specified Listing in storage.
      */
-    public function update(Request $request, Listing $listing): JsonResponse
+    public function update(UpdateListingRequest $request, Listing $listing): JsonResponse
     {
         try {
             $listing = $this->listingService->updateListing($listing, $request->validated());
@@ -65,9 +65,9 @@ class ListingController extends BaseController
     public function destroy(Listing $listing): JsonResponse
     {
         try {
-            $listing = $this->listingService->deleteListing($listing);
+            $this->listingService->deleteListing($listing);
 
-            return $this->sendResponse(new ListingResource($listing), '', 204);
+            return $this->sendResponse('', '', 204);
         } catch (Exception $exception) {
             return $this->sendResponse([],  $exception->getMessage(), 500);
         }

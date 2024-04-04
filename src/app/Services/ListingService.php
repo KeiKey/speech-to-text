@@ -86,7 +86,9 @@ class ListingService
 
     private function updateListingFields(Listing $listing, array $data): Listing
     {
-        $fieldsToUpdate = [];
+        $fieldsToUpdate = [
+            'inspector_id' => null
+        ];
 
         if (isset($data['inspector_uuid'])) {
             $inspector = User::query()->byUUID($data['inspector_uuid'])->first();

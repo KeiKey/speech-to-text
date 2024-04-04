@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class ListingRequest extends FormRequest
+class UpdateListingRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,14 +24,14 @@ class ListingRequest extends FormRequest
     {
         return [
             'inspector_uuid' => ['nullable', 'exists:users,uuid'],
-            'title'          => ['required', 'max:255'],
-            'description'    => ['required', 'max:255'],
-            'address'        => ['required', 'max:45'],
-            'start'          => ['required', 'date_format:Y-m-d H:i'],
-            'end'            => ['required', 'date_format:Y-m-d H:i'],
-            'contact_name'   => ['required', 'max:255'],
-            'contact_phone'  => ['required', 'max:255'],
-            'contact_email'  => ['required', 'max:255']
+            'title'          => ['nullable', 'max:45'],
+            'description'    => ['nullable', 'max:255'],
+            'address'        => ['nullable', 'max:45'],
+            'start'          => ['nullable', 'date_format:Y-m-d H:i'],
+            'end'            => ['nullable', 'date_format:Y-m-d H:i'],
+            'contact_name'   => ['nullable', 'max:255'],
+            'contact_phone'  => ['nullable', 'max:255'],
+            'contact_email'  => ['nullable', 'max:255']
         ];
     }
 }
