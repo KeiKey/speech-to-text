@@ -7,7 +7,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class ListingAssigned extends Notification
+class ListingDeleted extends Notification
 {
     use Queueable;
 
@@ -35,14 +35,9 @@ class ListingAssigned extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-            ->subject('New listing!')
-            ->line('You have been assigned a new listing!')
+            ->subject('Listing Deleted!')
+            ->line('This listing has been deleted!')
             ->line($this->listing->title)
-            ->line($this->listing->description)
-            ->line("Expected start date and time: {$this->listing->start->format('Y-m-d H:i')}")
-            ->line("Expected end date and time: {$this->listing->end->format('Y-m-d H:i')}")
-            ->line("Your contact name: {$this->listing->contact_name}")
-            ->line("Your contact name: {$this->listing->contact_phone}")
-            ->line("Your contact name: {$this->listing->contact_email}");
+            ->line($this->listing->description);
     }
 }

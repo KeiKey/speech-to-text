@@ -7,7 +7,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class ListingAssigned extends Notification
+class ListingUpdated extends Notification
 {
     use Queueable;
 
@@ -35,8 +35,8 @@ class ListingAssigned extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-            ->subject('New listing!')
-            ->line('You have been assigned a new listing!')
+            ->subject('Listing Updated!')
+            ->line('This listing has been updated!')
             ->line($this->listing->title)
             ->line($this->listing->description)
             ->line("Expected start date and time: {$this->listing->start->format('Y-m-d H:i')}")

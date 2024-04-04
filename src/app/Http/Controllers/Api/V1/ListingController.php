@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Http\Requests\StoreListingRequest;
+use App\Http\Requests\ListingRequest;
 use App\Http\Resources\ListingResource;
 use App\Models\Listing\Listing;
 use App\Services\ListingService;
-use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Exception;
 
 class ListingController extends BaseController
 {
-    public function __construct(private ListingService $listingService)
+    public function __construct(private readonly ListingService $listingService)
     {}
 
     /**
@@ -26,7 +26,7 @@ class ListingController extends BaseController
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreListingRequest $request): JsonResponse
+    public function store(ListingRequest $request): JsonResponse
     {
         try {
             $listing = $this->listingService->createListing($request->validated(), $request->user());
@@ -50,7 +50,13 @@ class ListingController extends BaseController
      */
     public function update(Request $request, Listing $listing): JsonResponse
     {
-        return $this->sendResponse(new ListingResource($listing), '', 201);
+        try {
+            $listing = $this->listingService->updateListing($listing, $request->validated());
+
+            return $this->sendResponse(new ListingResource($listing), '', 202);
+        } catch (Exception $exception) {
+            return $this->sendResponse([],  $exception->getMessage(), 500);
+        }
     }
 
     /**
@@ -58,6 +64,12 @@ class ListingController extends BaseController
      */
     public function destroy(Listing $listing): JsonResponse
     {
-        return $this->sendResponse(new ListingResource($listing), '', 201);
+        try {
+            $listing = $this->listingService->deleteListing($listing);
+
+            return $this->sendResponse(new ListingResource($listing), '', 204);
+        } catch (Exception $exception) {
+            return $this->sendResponse([],  $exception->getMessage(), 500);
+        }
     }
 }
