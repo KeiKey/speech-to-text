@@ -39,7 +39,7 @@ class ListingService
         ]);
 
         if (isset($data['inspector_uuid'])) {
-            $listing->inspector->notify(new ListingAssigned($listing));
+//            $listing->inspector->notify(new ListingAssigned($listing));
         }
 
         return $listing;
@@ -52,25 +52,25 @@ class ListingService
         $listing = $this->updateListingFields($listing, $data);
 
         if ($listing->inspector_id === $oldListing->inspector_id) {
-            $listing->inspector->notify(new ListingUpdated($listing));
+//            $listing->inspector->notify(new ListingUpdated($listing));
 
             return $listing;
         }
 
         if (!$listing->inspector_id) {
-            $oldListing->inspector->notify(new ListingDeassigned($listing));
+//            $oldListing->inspector->notify(new ListingDeassigned($listing));
 
             return $listing;
         }
 
         if (!$oldListing->inspector_id) {
-            $listing->inspector->notify(new ListingAssigned($listing));
+//            $listing->inspector->notify(new ListingAssigned($listing));
 
             return $listing;
         }
 
-        $oldListing->inspector->notify(new ListingDeassigned($listing));
-        $listing->inspector->notify(new ListingAssigned($listing));
+//        $oldListing->inspector->notify(new ListingDeassigned($listing));
+//        $listing->inspector->notify(new ListingAssigned($listing));
 
         return $listing;
     }
@@ -79,7 +79,7 @@ class ListingService
     {
         $listing->delete();
 
-        $listing->inspector->notify(new ListingDeleted($listing));
+//        $listing->inspector->notify(new ListingDeleted($listing));
 
         return $listing;
     }
