@@ -30,7 +30,7 @@
                                 "schema": {
                                     "properties": {
                                         "code": {
-                                            "example": 0
+                                            "example": 201
                                         },
                                         "message": {
                                             "example": ""
@@ -75,7 +75,7 @@
                                 "schema": {
                                     "properties": {
                                         "code": {
-                                            "example": 0
+                                            "example": 200
                                         },
                                         "message": {
                                             "example": ""
@@ -121,7 +121,7 @@
                                 "schema": {
                                     "properties": {
                                         "code": {
-                                            "example": 0
+                                            "example": 200
                                         },
                                         "message": {
                                             "example": ""
@@ -175,7 +175,7 @@
                                 "schema": {
                                     "properties": {
                                         "code": {
-                                            "example": 0
+                                            "example": 201
                                         },
                                         "message": {
                                             "example": ""
@@ -231,7 +231,7 @@
                                 "schema": {
                                     "properties": {
                                         "code": {
-                                            "example": 0
+                                            "example": 200
                                         },
                                         "message": {
                                             "example": ""
@@ -295,7 +295,7 @@
                                 "schema": {
                                     "properties": {
                                         "code": {
-                                            "example": 0
+                                            "example": 202
                                         },
                                         "message": {
                                             "example": ""
@@ -349,7 +349,7 @@
                                 "schema": {
                                     "properties": {
                                         "code": {
-                                            "example": 0
+                                            "example": 204
                                         },
                                         "message": {
                                             "example": ""
@@ -368,6 +368,108 @@
                     }
                 }
             }
+        },
+        "api/v1/users": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Retrive a listing of the Users",
+                "operationId": "fafb7822ee67bba64660479986f1cf25",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "Bearer epl5d5olRkge9DK60acfBrrFIHufNeVIXngSWJ7ReCNkr11I6WL"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "example": 200
+                                        },
+                                        "message": {
+                                            "example": ""
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Users"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "api/v1/users/{uuid}": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get an existing Users",
+                "operationId": "c91f5c6364a31d934097cfb620461da3",
+                "parameters": [
+                    {
+                        "name": "uuid",
+                        "in": "path",
+                        "description": "Individual uuid",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "389ffffe-b89c-47b6-bc63-cf5fd2a88218"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "Bearer epl5d5olRkge9DK60acfBrrFIHufNeVIXngSWJ7ReCNkr11I6WL"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "example": 200
+                                        },
+                                        "message": {
+                                            "example": ""
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Users"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -375,33 +477,41 @@
             "CreateListingRequest": {
                 "title": "CreateListingRequest",
                 "properties": {
-                    "name": {
+                    "inspector_uuid": {
                         "type": "string",
-                        "example": "example"
+                        "example": "389ffffe-b89c-47b6-bc63-cf5fd2a88218"
                     },
-                    "email": {
+                    "title": {
                         "type": "string",
-                        "example": "example"
+                        "example": "title"
+                    },
+                    "description": {
+                        "type": "string",
+                        "example": "description"
                     },
                     "address": {
                         "type": "string",
-                        "example": "example"
+                        "example": "test address"
                     },
-                    "vat_number": {
+                    "start": {
                         "type": "string",
-                        "example": "example"
+                        "example": "2024-04-04 19:07"
+                    },
+                    "end": {
+                        "type": "string",
+                        "example": "2024-04-04 19:07"
                     },
                     "contact_name": {
                         "type": "string",
-                        "example": "example"
+                        "example": "Contact name"
                     },
                     "contact_phone": {
                         "type": "string",
-                        "example": "example"
+                        "example": "Contact phone"
                     },
                     "contact_email": {
                         "type": "string",
-                        "example": "example"
+                        "example": "Contact email"
                     }
                 },
                 "type": "object"
@@ -437,10 +547,7 @@
                     },
                     "role": {
                         "type": "string",
-                        "example": [
-                            "auditor",
-                            "inspector"
-                        ]
+                        "example": "auditor"
                     }
                 },
                 "type": "object"
@@ -448,33 +555,41 @@
             "UpdateListingRequest": {
                 "title": "UpdateListingRequest",
                 "properties": {
-                    "name": {
+                    "inspector_uuid": {
                         "type": "string",
-                        "example": "example"
+                        "example": "389ffffe-b89c-47b6-bc63-cf5fd2a88218"
                     },
-                    "email": {
+                    "title": {
                         "type": "string",
-                        "example": "example"
+                        "example": "title"
+                    },
+                    "description": {
+                        "type": "string",
+                        "example": "description"
                     },
                     "address": {
                         "type": "string",
-                        "example": "example"
+                        "example": "test address"
                     },
-                    "vat_number": {
+                    "start": {
                         "type": "string",
-                        "example": "example"
+                        "example": "2024-04-04 19:07"
+                    },
+                    "end": {
+                        "type": "string",
+                        "example": "2024-04-04 19:07"
                     },
                     "contact_name": {
                         "type": "string",
-                        "example": "example"
+                        "example": "Contact name"
                     },
                     "contact_phone": {
                         "type": "string",
-                        "example": "example"
+                        "example": "Contact phone"
                     },
                     "contact_email": {
                         "type": "string",
-                        "example": "example"
+                        "example": "Contact email"
                     }
                 },
                 "type": "object"
@@ -486,33 +601,43 @@
                         "type": "string",
                         "example": "389ffffe-b89c-47b6-bc63-cf5fd2a88218"
                     },
-                    "name": {
+                    "title": {
                         "type": "string",
-                        "example": "example"
+                        "example": "title"
                     },
-                    "email": {
+                    "description": {
                         "type": "string",
-                        "example": "example"
+                        "example": "description"
                     },
                     "address": {
                         "type": "string",
-                        "example": "example"
+                        "example": "test address"
                     },
-                    "vat_number": {
+                    "start": {
                         "type": "string",
-                        "example": "example"
+                        "example": "2024-04-04 19:07"
+                    },
+                    "end": {
+                        "type": "string",
+                        "example": "2024-04-04 19:07"
                     },
                     "contact_name": {
                         "type": "string",
-                        "example": "example"
+                        "example": "Contact name"
                     },
                     "contact_phone": {
                         "type": "string",
-                        "example": "example"
+                        "example": "Contact phone"
                     },
                     "contact_email": {
                         "type": "string",
-                        "example": "example"
+                        "example": "Contact email"
+                    },
+                    "creator": {
+                        "$ref": "#/components/schemas/Users"
+                    },
+                    "inspector": {
+                        "$ref": "#/components/schemas/Users"
                     }
                 },
                 "type": "object"

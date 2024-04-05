@@ -13,7 +13,9 @@ use Exception;
 class ListingController extends BaseController
 {
     public function __construct(private readonly ListingService $listingService)
-    {}
+    {
+
+    }
 
     /**
      * @OA\Get(
@@ -27,7 +29,7 @@ class ListingController extends BaseController
      *         response=200,
      *         description="OK",
      *         @OA\JsonContent(
-     *             @OA\Property(property="code", example=0),
+     *             @OA\Property(property="code", example=200),
      *             @OA\Property(property="message", example=""),
      *             @OA\Property(property="data", type="array",
      *                 @OA\Items(ref="#/components/schemas/Listings")
@@ -63,7 +65,7 @@ class ListingController extends BaseController
      *          response=200,
      *          description="OK",
      *          @OA\JsonContent(
-     *              @OA\Property(property="code", example=0),
+     *              @OA\Property(property="code", example=200),
      *              @OA\Property(property="message", example=""),
      *              @OA\Property(property="data", type="array",
      *                  @OA\Items(ref="#/components/schemas/Listings")
@@ -93,7 +95,7 @@ class ListingController extends BaseController
      *          response=201,
      *          description="OK",
      *         @OA\JsonContent(
-     *             @OA\Property(property="code", example=0),
+     *             @OA\Property(property="code", example=201),
      *             @OA\Property(property="message", example=""),
      *             @OA\Property(property="data", type="array",
      *                 @OA\Items(ref="#/components/schemas/Listings")
@@ -139,7 +141,7 @@ class ListingController extends BaseController
      *          response=202,
      *          description="OK",
      *         @OA\JsonContent(
-     *             @OA\Property(property="code", example=0),
+     *             @OA\Property(property="code", example=202),
      *             @OA\Property(property="message", example=""),
      *             @OA\Property(property="data", type="array",
      *                 @OA\Items(ref="#/components/schemas/Listings")
@@ -181,7 +183,7 @@ class ListingController extends BaseController
      *          response=204,
      *          description="OK",
      *         @OA\JsonContent(
-     *             @OA\Property(property="code", example=0),
+     *             @OA\Property(property="code", example=204),
      *             @OA\Property(property="message", example=""),
      *             @OA\Property(property="data", type="array",
      *                 @OA\Items(ref="#/components/schemas/Listings")

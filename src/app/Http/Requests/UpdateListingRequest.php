@@ -9,13 +9,15 @@ use Illuminate\Foundation\Http\FormRequest;
  * @OA\Schema(
  *     schema="UpdateListingRequest",
  *     title="UpdateListingRequest",
- *     @OA\Property(property="name", type="string", example="example"),
- *     @OA\Property(property="email", type="string", example="example"),
- *     @OA\Property(property="address", type="string", example="example"),
- *     @OA\Property(property="vat_number", type="string", example="example"),
- *     @OA\Property(property="contact_name", type="string", example="example"),
- *     @OA\Property(property="contact_phone", type="string", example="example"),
- *     @OA\Property(property="contact_email", type="string", example="example"),
+ *     @OA\Property(property="inspector_uuid", type="string", example="389ffffe-b89c-47b6-bc63-cf5fd2a88218"),
+ *     @OA\Property(property="title", type="string", example="title"),
+ *     @OA\Property(property="description", type="string", example="description"),
+ *     @OA\Property(property="address", type="string", example="test address"),
+ *     @OA\Property(property="start", type="string", example="2024-04-04 19:07"),
+ *     @OA\Property(property="end", type="string", example="2024-04-04 19:07"),
+ *     @OA\Property(property="contact_name", type="string", example="Contact name"),
+ *     @OA\Property(property="contact_phone", type="string", example="Contact phone"),
+ *     @OA\Property(property="contact_email", type="string", example="Contact email"),
  * )
  */
 class UpdateListingRequest extends FormRequest

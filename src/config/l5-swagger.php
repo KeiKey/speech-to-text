@@ -5,7 +5,7 @@ return [
     'documentations' => [
         'default' => [
             'api' => [
-                'title' => 'Transactions Service Api`s',
+                'title' => 'Audit Api',
             ],
 
             'routes' => [

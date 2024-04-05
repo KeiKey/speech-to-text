@@ -26,7 +26,7 @@ class PassportAuthController extends BaseController
      *          response=201,
      *          description="OK",
      *         @OA\JsonContent(
-     *             @OA\Property(property="code", example=0),
+     *             @OA\Property(property="code", example=201),
      *             @OA\Property(property="message", example=""),
      *             @OA\Property(property="data", type="string", example={"token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9"})
      *         )
@@ -66,7 +66,7 @@ class PassportAuthController extends BaseController
      *          response=200,
      *          description="OK",
      *         @OA\JsonContent(
-     *             @OA\Property(property="code", example=0),
+     *             @OA\Property(property="code", example=200),
      *             @OA\Property(property="message", example=""),
      *             @OA\Property(property="data", type="string", example={"token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9"})
      *         )
