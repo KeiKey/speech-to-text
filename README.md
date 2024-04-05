@@ -43,7 +43,9 @@ If you prefer not to use Docker, you can run the Laravel application directly. M
     cd audit/src
     ```
 
-2. Create a copy of the `.env.example` file and rename it to `.env`. Update the database configurations in the `.env`. Also fill the key `L5_SWAGGER_CONST_HOST` with the app URL.
+2. Create a copy of the `.env.example` file and rename it to `.env`. Update the database configurations in the `.env`. 
+Fill the key `L5_SWAGGER_CONST_HOST` with the app URL. Also fill the mail server configurations. Otherwise checkout 
+to branch /no-mail.
 
 3. Install JavaScript & PHP dependencies:
 
