@@ -13,6 +13,26 @@ use Illuminate\Validation\UnauthorizedException;
 
 class PassportAuthController extends BaseController
 {
+    /**
+     * @OA\Post(
+     *      path="api/register",
+     *      tags={"Authentication"},
+     *      summary="Register a new User",
+     *      @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(ref="#/components/schemas/RegisterRequest")
+     *      ),
+     *      @OA\Response(
+     *          response=201,
+     *          description="OK",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="code", example=0),
+     *             @OA\Property(property="message", example=""),
+     *             @OA\Property(property="data", type="string", example={"token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9"})
+     *         )
+     *       )
+     * )
+     */
     public function register(RegisterRequest $request): JsonResponse
     {
         try {
@@ -28,12 +48,31 @@ class PassportAuthController extends BaseController
 
             $userResource = (new UserResource($user))->toArray($request);
 
-            return $this->sendResponse(array_merge($userResource, ['token' => $token]), '', 201);
+            return $this->sendResponse(array_merge($userResource, ['token' => $token]), 'OK', 201);
         } catch (Exception $exception) {
             return $this->sendResponse([],  $exception->getMessage(), 500);
         }
     }
-
+    /**
+     * @OA\Post(
+     *      path="api/login",
+     *      tags={"Authentication"},
+     *      summary="Login an existing User",
+     *      @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(ref="#/components/schemas/LoginRequest")
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="OK",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="code", example=0),
+     *             @OA\Property(property="message", example=""),
+     *             @OA\Property(property="data", type="string", example={"token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9"})
+     *         )
+     *       )
+     * )
+     */
     public function login(LoginRequest $request): JsonResponse
     {
         try {
@@ -48,7 +87,7 @@ class PassportAuthController extends BaseController
 
             $token = auth()->user()->createToken('LaravelAuthApp')->accessToken;
 
-            return $this->sendResponse(['token' => $token], '', 201);
+            return $this->sendResponse(['token' => $token], 'OK');
         } catch (Exception $exception) {
             return $this->sendResponse([],  $exception->getMessage(), 500);
         }

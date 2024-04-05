@@ -16,7 +16,25 @@ class ListingController extends BaseController
     {}
 
     /**
-     * Display a listing of the resource.
+     * @OA\Get(
+     *     path="api/v1/listings",
+     *     summary="Retrive a listing of the Listings",
+     *     tags={"Listings"},
+     *     @OA\Parameter(name="Authorization", required=true, in="header",
+     *          @OA\Schema(type="string", example="Bearer epl5d5olRkge9DK60acfBrrFIHufNeVIXngSWJ7ReCNkr11I6WL")
+     *      ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="OK",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="code", example=0),
+     *             @OA\Property(property="message", example=""),
+     *             @OA\Property(property="data", type="array",
+     *                 @OA\Items(ref="#/components/schemas/Listings")
+     *             )
+     *         )
+     *     )
+     * )
      */
     public function index(): JsonResponse
     {
@@ -24,7 +42,65 @@ class ListingController extends BaseController
     }
 
     /**
-     * Store a newly created resource in storage.
+     * @OA\Get(
+     *      path="api/v1/listings/{uuid}",
+     *      tags={"Listings"},
+     *      summary="Get an existing Listings",
+     *      @OA\Parameter(
+     *          name="uuid",
+     *          description="Individual uuid",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="string",
+     *              example="389ffffe-b89c-47b6-bc63-cf5fd2a88218"
+     *          )
+     *      ),
+     *      @OA\Parameter(name="Authorization", required=true, in="header",
+     *          @OA\Schema(type="string", example="Bearer epl5d5olRkge9DK60acfBrrFIHufNeVIXngSWJ7ReCNkr11I6WL")
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="OK",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="code", example=0),
+     *              @OA\Property(property="message", example=""),
+     *              @OA\Property(property="data", type="array",
+     *                  @OA\Items(ref="#/components/schemas/Listings")
+     *              )
+     *          )
+     *      )
+     * )
+     */
+    public function show(Listing $listing): JsonResponse
+    {
+        return $this->sendResponse(new ListingResource($listing));
+    }
+
+    /**
+     * @OA\Post(
+     *      path="api/v1/listings",
+     *      tags={"Listings"},
+     *      summary="Store new Listings",
+     *      @OA\Parameter(name="Authorization", required=true, in="header",
+     *          @OA\Schema(type="string", example="Bearer epl5d5olRkge9DK60acfBrrFIHufNeVIXngSWJ7ReCNkr11I6WL")
+     *      ),
+     *      @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(ref="#/components/schemas/CreateListingRequest")
+     *      ),
+     *      @OA\Response(
+     *          response=201,
+     *          description="OK",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="code", example=0),
+     *             @OA\Property(property="message", example=""),
+     *             @OA\Property(property="data", type="array",
+     *                 @OA\Items(ref="#/components/schemas/Listings")
+     *             )
+     *         )
+     *       )
+     * )
      */
     public function store(CreateListingRequest $request): JsonResponse
     {
@@ -38,15 +114,39 @@ class ListingController extends BaseController
     }
 
     /**
-     * Display the specified Listing.
-     */
-    public function show(Listing $listing): JsonResponse
-    {
-        return $this->sendResponse(new ListingResource($listing));
-    }
-
-    /**
-     * Update the specified Listing in storage.
+     * @OA\Put(
+     *      path="api/v1/listings/{uuid}",
+     *      tags={"Listings"},
+     *      summary="Update an existing Listings",
+     *      @OA\Parameter(
+     *          name="uuid",
+     *          description="Individual uuid",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="string",
+     *              example="389ffffe-b89c-47b6-bc63-cf5fd2a88218"
+     *          )
+     *      ),
+     *      @OA\Parameter(name="Authorization", required=true, in="header",
+     *          @OA\Schema(type="string", example="Bearer epl5d5olRkge9DK60acfBrrFIHufNeVIXngSWJ7ReCNkr11I6WL")
+     *      ),
+     *      @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(ref="#/components/schemas/UpdateListingRequest")
+     *      ),
+     *      @OA\Response(
+     *          response=202,
+     *          description="OK",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="code", example=0),
+     *             @OA\Property(property="message", example=""),
+     *             @OA\Property(property="data", type="array",
+     *                 @OA\Items(ref="#/components/schemas/Listings")
+     *             )
+     *         )
+     *       )
+     * )
      */
     public function update(UpdateListingRequest $request, Listing $listing): JsonResponse
     {
@@ -60,7 +160,35 @@ class ListingController extends BaseController
     }
 
     /**
-     * Remove the specified Listing from storage.
+     * @OA\Delete(
+     *      path="api/v1/listings/{uuid}",
+     *      tags={"Listings"},
+     *      summary="Delete existing Listings",
+     *      @OA\Parameter(
+     *          name="uuid",
+     *          description="Individual uuid",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="string",
+     *              example="389ffffe-b89c-47b6-bc63-cf5fd2a88218"
+     *          )
+     *      ),
+     *      @OA\Parameter(name="Authorization", required=true, in="header",
+     *          @OA\Schema(type="string", example="Bearer epl5d5olRkge9DK60acfBrrFIHufNeVIXngSWJ7ReCNkr11I6WL")
+     *      ),
+     *      @OA\Response(
+     *          response=204,
+     *          description="OK",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="code", example=0),
+     *             @OA\Property(property="message", example=""),
+     *             @OA\Property(property="data", type="array",
+     *                 @OA\Items(ref="#/components/schemas/Listings")
+     *             )
+     *         )
+     *       )
+     * )
      */
     public function destroy(Listing $listing): JsonResponse
     {

@@ -1,0 +1,544 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API V1",
+        "version": "0.1"
+    },
+    "paths": {
+        "api/register": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Register a new User",
+                "operationId": "be6599bdfc41183cf0d19b2519f60ea9",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RegisterRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "example": 0
+                                        },
+                                        "message": {
+                                            "example": ""
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": {
+                                                "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "api/login": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Login an existing User",
+                "operationId": "4ce4077807072036e82d5da69026cf3a",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LoginRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "example": 0
+                                        },
+                                        "message": {
+                                            "example": ""
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": {
+                                                "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "api/v1/listings": {
+            "get": {
+                "tags": [
+                    "Listings"
+                ],
+                "summary": "Retrive a listing of the Listings",
+                "operationId": "8b5ba12c266e5f1fc322841683b3e597",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "Bearer epl5d5olRkge9DK60acfBrrFIHufNeVIXngSWJ7ReCNkr11I6WL"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "example": 0
+                                        },
+                                        "message": {
+                                            "example": ""
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Listings"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Listings"
+                ],
+                "summary": "Store new Listings",
+                "operationId": "966735571445d4f1c928245a5ef5bce5",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "Bearer epl5d5olRkge9DK60acfBrrFIHufNeVIXngSWJ7ReCNkr11I6WL"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateListingRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "example": 0
+                                        },
+                                        "message": {
+                                            "example": ""
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Listings"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "api/v1/listings/{uuid}": {
+            "get": {
+                "tags": [
+                    "Listings"
+                ],
+                "summary": "Get an existing Listings",
+                "operationId": "e01bd6baef714fcc51ab6546f5a3bd1e",
+                "parameters": [
+                    {
+                        "name": "uuid",
+                        "in": "path",
+                        "description": "Individual uuid",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "389ffffe-b89c-47b6-bc63-cf5fd2a88218"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "Bearer epl5d5olRkge9DK60acfBrrFIHufNeVIXngSWJ7ReCNkr11I6WL"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "example": 0
+                                        },
+                                        "message": {
+                                            "example": ""
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Listings"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Listings"
+                ],
+                "summary": "Update an existing Listings",
+                "operationId": "d64fe9913b0be7216ec67ed92742789c",
+                "parameters": [
+                    {
+                        "name": "uuid",
+                        "in": "path",
+                        "description": "Individual uuid",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "389ffffe-b89c-47b6-bc63-cf5fd2a88218"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "Bearer epl5d5olRkge9DK60acfBrrFIHufNeVIXngSWJ7ReCNkr11I6WL"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateListingRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "202": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "example": 0
+                                        },
+                                        "message": {
+                                            "example": ""
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Listings"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Listings"
+                ],
+                "summary": "Delete existing Listings",
+                "operationId": "ebb0fcf78329c9ab84f6cf437371ae82",
+                "parameters": [
+                    {
+                        "name": "uuid",
+                        "in": "path",
+                        "description": "Individual uuid",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "389ffffe-b89c-47b6-bc63-cf5fd2a88218"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "Bearer epl5d5olRkge9DK60acfBrrFIHufNeVIXngSWJ7ReCNkr11I6WL"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "example": 0
+                                        },
+                                        "message": {
+                                            "example": ""
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Listings"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "CreateListingRequest": {
+                "title": "CreateListingRequest",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "example": "example"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "example"
+                    },
+                    "address": {
+                        "type": "string",
+                        "example": "example"
+                    },
+                    "vat_number": {
+                        "type": "string",
+                        "example": "example"
+                    },
+                    "contact_name": {
+                        "type": "string",
+                        "example": "example"
+                    },
+                    "contact_phone": {
+                        "type": "string",
+                        "example": "example"
+                    },
+                    "contact_email": {
+                        "type": "string",
+                        "example": "example"
+                    }
+                },
+                "type": "object"
+            },
+            "LoginRequest": {
+                "title": "LoginRequest",
+                "properties": {
+                    "email": {
+                        "type": "string",
+                        "example": "example@example.com"
+                    },
+                    "password": {
+                        "type": "string",
+                        "example": "password"
+                    }
+                },
+                "type": "object"
+            },
+            "RegisterRequest": {
+                "title": "RegisterRequest",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "example": "name"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "example@example.com"
+                    },
+                    "password": {
+                        "type": "string",
+                        "example": "password"
+                    },
+                    "role": {
+                        "type": "string",
+                        "example": [
+                            "auditor",
+                            "inspector"
+                        ]
+                    }
+                },
+                "type": "object"
+            },
+            "UpdateListingRequest": {
+                "title": "UpdateListingRequest",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "example": "example"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "example"
+                    },
+                    "address": {
+                        "type": "string",
+                        "example": "example"
+                    },
+                    "vat_number": {
+                        "type": "string",
+                        "example": "example"
+                    },
+                    "contact_name": {
+                        "type": "string",
+                        "example": "example"
+                    },
+                    "contact_phone": {
+                        "type": "string",
+                        "example": "example"
+                    },
+                    "contact_email": {
+                        "type": "string",
+                        "example": "example"
+                    }
+                },
+                "type": "object"
+            },
+            "Listings": {
+                "title": "Listings",
+                "properties": {
+                    "uuid": {
+                        "type": "string",
+                        "example": "389ffffe-b89c-47b6-bc63-cf5fd2a88218"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "example"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "example"
+                    },
+                    "address": {
+                        "type": "string",
+                        "example": "example"
+                    },
+                    "vat_number": {
+                        "type": "string",
+                        "example": "example"
+                    },
+                    "contact_name": {
+                        "type": "string",
+                        "example": "example"
+                    },
+                    "contact_phone": {
+                        "type": "string",
+                        "example": "example"
+                    },
+                    "contact_email": {
+                        "type": "string",
+                        "example": "example"
+                    }
+                },
+                "type": "object"
+            },
+            "Users": {
+                "title": "Users",
+                "properties": {
+                    "uuid": {
+                        "type": "string",
+                        "example": "389ffffe-b89c-47b6-bc63-cf5fd2a88218"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "example"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "example"
+                    },
+                    "role": {
+                        "type": "string",
+                        "example": "auditor|inspector"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    }
+}

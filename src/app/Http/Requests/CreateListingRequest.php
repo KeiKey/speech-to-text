@@ -5,6 +5,19 @@ namespace App\Http\Requests;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * @OA\Schema(
+ *     schema="CreateListingRequest",
+ *     title="CreateListingRequest",
+ *     @OA\Property(property="name", type="string", example="example"),
+ *     @OA\Property(property="email", type="string", example="example"),
+ *     @OA\Property(property="address", type="string", example="example"),
+ *     @OA\Property(property="vat_number", type="string", example="example"),
+ *     @OA\Property(property="contact_name", type="string", example="example"),
+ *     @OA\Property(property="contact_phone", type="string", example="example"),
+ *     @OA\Property(property="contact_email", type="string", example="example"),
+ * )
+ */
 class CreateListingRequest extends FormRequest
 {
     /**

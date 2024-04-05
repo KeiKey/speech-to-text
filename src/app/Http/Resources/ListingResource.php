@@ -5,6 +5,20 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @OA\Schema(
+ *     schema="Listings",
+ *     title="Listings",
+ *     @OA\Property(property="uuid", type="string", example="389ffffe-b89c-47b6-bc63-cf5fd2a88218"),
+ *     @OA\Property(property="name", type="string", example="example"),
+ *     @OA\Property(property="email", type="string", example="example"),
+ *     @OA\Property(property="address", type="string", example="example"),
+ *     @OA\Property(property="vat_number", type="string", example="example"),
+ *     @OA\Property(property="contact_name", type="string", example="example"),
+ *     @OA\Property(property="contact_phone", type="string", example="example"),
+ *     @OA\Property(property="contact_email", type="string", example="example"),
+ * )
+ */
 class ListingResource extends JsonResource
 {
     /**
