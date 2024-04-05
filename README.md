@@ -1,21 +1,23 @@
 # Audit
 
-This project provides a Dockerized setup for running a Laravel application. It includes configurations for NGINX, MySQL, PHP, and Node.js.
+This project is a Dockerized setup for running a Laravel application. It includes configurations for NGINX, MySQL, PHP, and Node.js.
 
 ## Running app locally
+
+### NOTE: Running app through Docker needs some fixes.
 
 ### Option 1: Docker
 
 #### Prerequisites
 
-Before you begin, ensure you have Docker and Docker Compose installed on your system.
+Before you begin, ensure you have Docker and Docker Compose installed on your machine.
 
 - Docker
 - Docker Compose
 
 To run the Laravel application using Docker, follow these steps:
 
-1. Clone this repository to your local machine:
+1. Clone this repository to your machine:
 
     ```bash
     git clone https://github.com/KeiKey/audit
@@ -32,9 +34,9 @@ To run the Laravel application using Docker, follow these steps:
 
 ### Option 2: Running Laravel Directly
 
-If you prefer not to use Docker, you can run the Laravel application directly. Make sure you have PHP, Composer, and Node.js installed on your system. Then follow these steps:
+If you prefer not to use Docker, you can run the Laravel application directly. Make sure you have PHP, Composer, and Node.js installed on your machine. Then follow these steps:
 
-1. Clone this repository to your local machine:
+1. Clone the repository to your machine:
 
     ```bash
     git clone https://github.com/KeiKey/audit
