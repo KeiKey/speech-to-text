@@ -70,7 +70,7 @@ to branch /no-mail.
 
 6. Access your Laravel application at [http://localhost:8000](http://localhost:8000).
 
-## Additional Resources
+## Additional Resources:
 
 In this repository, you will find a file named `Audit.postman_collection.json`, which is the exported Postman collection. You can use this to run tests. Just remember to update the variables accordingly.
 
