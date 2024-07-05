@@ -12,6 +12,7 @@
         "laravel/passport": "^11.8",
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
+        "keikey/whisper-utils": "dev-master",
         "spatie/laravel-permission": "^6.4"
     },
     "require-dev": {
@@ -65,5 +66,11 @@
         }
     },
     "minimum-stability": "stable",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../packages/whisper-utils"
+        }
+    ]
 }
