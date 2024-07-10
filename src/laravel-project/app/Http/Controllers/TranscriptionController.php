@@ -4,11 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\TranscriptionStoreRequest;
 use App\Models\Transcription;
+use App\Models\Translation;
 use App\Services\TranscriptionService;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Storage;
 use KeiKey\WhisperUtils\Enums\Languages;
 use KeiKey\WhisperUtils\Enums\ResponseFormat;
 use KeiKey\WhisperUtils\Enums\TimestampGranularity;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class TranscriptionController extends Controller
 {
@@ -46,25 +50,52 @@ class TranscriptionController extends Controller
      * Store a newly created Transcription.
      *
      * @param TranscriptionStoreRequest $request
-     * @return View
+     * @return RedirectResponse
      */
-    public function store(TranscriptionStoreRequest $request): View
+    public function store(TranscriptionStoreRequest $request): RedirectResponse
     {
         $this->transcriptionService->createTranscription($request->validated(), $request->user());
 
-        return view('transcriptions.index');
+        return redirect()->route('transcriptions.index');
     }
 
     /**
      * Remove the specified Transcription.
      *
      * @param Transcription $transcription
-     * @return View
+     * @return RedirectResponse
+     * @throws \Exception
      */
-    public function destroy(Transcription $transcription): View
+    public function destroy(Transcription $transcription): RedirectResponse
     {
         $this->transcriptionService->deleteTranslation($transcription, request()->user());
 
-        return view('transcriptions.index');
+        return redirect()->route('transcriptions.index');
+    }
+
+    /**
+     * @param Transcription $transcription
+     * @return StreamedResponse
+     */
+    public function download(Transcription $transcription): StreamedResponse
+    {
+        $fileName = 'transcription_' . $transcription->name . '.json';
+
+        Storage::disk('local')->put($fileName, $transcription->transcription);
+
+        return Storage::download($fileName);
+    }
+
+    /**
+     * @param Transcription $transcription
+     * @return StreamedResponse
+     */
+    public function downloadFile(Transcription $transcription): StreamedResponse
+    {
+        $fileName = 'transcription_' . $transcription->name . '.json';
+
+        Storage::disk('local')->put($fileName, $transcription->transcription);
+
+        return Storage::download($fileName);
     }
 }

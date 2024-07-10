@@ -12,7 +12,9 @@
                             @csrf
 
                             <div class="row mb-3">
-                                <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Translation name') }}</label>
+                                <label for="name" class="col-md-4 col-form-label text-md-end">
+                                    {{ __('Translation name') }}
+                                </label>
 
                                 <div class="col-md-6">
                                     <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="Translation name" autofocus>
@@ -26,7 +28,10 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label for="prompt" class="col-md-4 col-form-label text-md-end">{{ __('Prompt') }}</label>
+                                <label for="prompt" class="col-md-4 col-form-label text-md-end">
+                                    {{ __('Prompt') }}
+                                    <i class="bi bi-info-circle-fill" title="An optional text to guide the model's style or continue a previous audio segment. The prompt should match the audio language."></i>
+                                </label>
 
                                 <div class="col-md-6">
                                     <input id="prompt" type="text" class="form-control @error('prompt') is-invalid @enderror" name="prompt" value="{{ old('prompt') }}">
@@ -40,7 +45,10 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label for="response_format" class="col-md-4 col-form-label text-md-end">{{ __('Response Format') }}</label>
+                                <label for="response_format" class="col-md-4 col-form-label text-md-end">
+                                    {{ __('Response Format') }}
+                                    <i class="bi bi-info-circle-fill" title="The format of the transcript output, in one of these options."></i>
+                                </label>
 
                                 <div class="col-md-6">
                                     <select class="form-select form-control-rounded" id="response_format" name="response_format">
@@ -58,7 +66,9 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label for="temperature" class="col-md-4 col-form-label text-md-end">{{ __('Temperature') }}</label>
+                                <label for="temperature" class="col-md-4 col-form-label text-md-end">
+                                    {{ __('Temperature') }} <i class="bi bi-info-circle-fill" title="The sampling temperature, between 0 and 1. "></i>
+                                </label>
 
                                 <div class="col-md-6">
                                     <input id="temperature" type="number" class="form-control @error('temperature') is-invalid @enderror" name="temperature" value="{{ old('temperature') }}">
@@ -72,12 +82,15 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label for="file" class="col-md-4 col-form-label text-md-end">{{ __('File') }}</label>
+                                <label for="file" class="col-md-4 col-form-label text-md-end">
+                                    {{ __('File') }}
+                                    <i class="bi bi-info-circle-fill" title="The audio file to transcribe, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm.Less than 25 mb"></i>
+                                </label>
 
                                 <div class="col-md-6">
                                     <input id="file" type="file" class="form-control @error('file') is-invalid @enderror" name="file" required>
 
-                                    @error('password')
+                                    @error('file')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

@@ -26,7 +26,7 @@
                                 <th>{{ __('Prompt') }}</th>
                                 <th>{{ __('Response Format') }}</th>
                                 <th>{{ __('Temperature') }}</th>
-                                <th>{{ __('timestamp_granularity') }}</th>
+                                <th>{{ __('Timestamp granularity') }}</th>
                                 <th>{{ __('Action') }}</th>
                             </tr>
                             </thead>
@@ -36,8 +36,12 @@
                                     <th scope="row">{{ $transcription->id }}</th>
                                     <td>{{ $transcription->name }}</td>
                                     <td>{{ $transcription->file_name }}</td>
-                                    <td>download file</td>
-                                    <td>download transcription</td>
+                                    <td>
+                                        <a href="{{ route('transcriptions.file_download', $transcription) }}" class="btn btn-sm btn-primary">{{ __('Download File') }}</a>
+                                    </td>
+                                    <td>
+                                        <a href="{{ route('transcriptions.download', $transcription) }}" class="btn btn-sm btn-primary">{{ __('Download Translation') }}</a>
+                                    </td>
                                     <td>{{ $transcription->language }}</td>
                                     <td>{{ $transcription->prompt }}</td>
                                     <td>{{ $transcription->response_format }}</td>

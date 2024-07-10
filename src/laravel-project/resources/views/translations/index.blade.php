@@ -34,7 +34,9 @@
                                     <th scope="row">{{ $translation->id }}</th>
                                     <td>{{ $translation->name }}</td>
                                     <td>{{ $translation->file_name }}</td>
-                                    <td>download the file here</td>
+                                    <td>
+                                        <a href="{{ route('translations.file_download', $translation) }}" class="btn btn-sm btn-primary">{{ __('Download File') }}</a>
+                                    </td>
                                     <td>
                                         <a href="{{ route('translations.download', $translation) }}" class="btn btn-sm btn-primary">{{ __('Download Translation') }}</a>
                                     </td>

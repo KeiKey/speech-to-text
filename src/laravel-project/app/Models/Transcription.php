@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Storage;
  * @property string timestamp_granularity
  * @property string file_name
  * @property string file_path
- * @property transcription
+ * @property string transcription
  * @property Carbon created_at
  * @property Carbon updated_at
  */

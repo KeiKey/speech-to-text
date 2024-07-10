@@ -9,6 +9,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
 use KeiKey\WhisperUtils\Enums\ResponseFormat;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class TranslationController extends Controller
 {
@@ -58,6 +59,7 @@ class TranslationController extends Controller
      *
      * @param Translation $translation
      * @return RedirectResponse
+     * @throws \Exception
      */
     public function destroy(Translation $translation): RedirectResponse
     {
@@ -66,9 +68,26 @@ class TranslationController extends Controller
         return redirect()->route('translations.index');
     }
 
-    public function download(Translation $translation)
+    /**
+     * @param Translation $translation
+     * @return StreamedResponse
+     */
+    public function download(Translation $translation): StreamedResponse
     {
         $fileName = 'translation_' . $translation->name . '.json';
+
+        Storage::disk('local')->put($fileName, $translation->translation);
+
+        return Storage::download($fileName);
+    }
+
+    /**
+     * @param Translation $translation
+     * @return StreamedResponse
+     */
+    public function downloadFile(Translation $translation): StreamedResponse
+    {
+        $fileName = $translation->name . '_' . $translation->file_name . '.json';
 
         Storage::disk('local')->put($fileName, $translation->translation);
 

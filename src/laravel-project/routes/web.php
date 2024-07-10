@@ -23,7 +23,10 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::resource('translations', TranslationController::class)->except(['edit', 'update', 'show']);
-    Route::resource('transcriptions', TranscriptionController::class)->except(['edit', 'update', 'show']);
-
     Route::get('translations/download/{translation}', [TranslationController::class, 'download'])->name('translations.download');
+    Route::get('translations/file_download/{translation}', [TranslationController::class, 'downloadFile'])->name('translations.file_download');
+
+    Route::resource('transcriptions', TranscriptionController::class)->except(['edit', 'update', 'show']);
+    Route::get('transcriptions/download/{transcription}', [TranscriptionController::class, 'download'])->name('transcriptions.download');
+    Route::get('transcriptions/file_download/{transcription}', [TranscriptionController::class, 'downloadFile'])->name('transcriptions.file_download');
 });

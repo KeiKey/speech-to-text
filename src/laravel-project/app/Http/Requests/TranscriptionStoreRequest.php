@@ -33,7 +33,7 @@ class TranscriptionStoreRequest extends FormRequest
             'prompt'                => ['nullable', 'max:255'],
             'response_format'       => ['nullable', Rule::in(ResponseFormat::toArray())],
             'temperature'           => ['nullable'],
-            'language'              => ['nullable', Rule::in(Languages::toArray())],
+            'language'              => [Rule::in(Languages::toArray())],
             'timestamp_granularity' => ['nullable', Rule::in(TimestampGranularity::toArray())],
         ];
     }
