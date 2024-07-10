@@ -2,21 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TranscriptionStoreRequest;
 use App\Models\Transcription;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Services\TranscriptionService;
+use Illuminate\Contracts\View\View;
 use KeiKey\WhisperUtils\Enums\Languages;
 use KeiKey\WhisperUtils\Enums\ResponseFormat;
 use KeiKey\WhisperUtils\Enums\TimestampGranularity;
 
 class TranscriptionController extends Controller
 {
+    public function __construct(
+        private readonly TranscriptionService $transcriptionService
+    ) { }
+
     /**
-     * Display a listing of the resource.
+     * Display a listing of Transcriptions.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function index()
+    public function index(): View
     {
         return view('transcriptions.index', [
             'transcriptions' => Transcription::all()
@@ -24,50 +29,42 @@ class TranscriptionController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new Transcription.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function create()
+    public function create(): View
     {
         return view('transcriptions.create', [
-            'languages'              => Languages::cases(),
-            'responseFormats'        => ResponseFormat::cases(),
-            'timestampGranularities' => TimestampGranularity::cases(),
+            'languages'              => Languages::toArray(),
+            'responseFormats'        => ResponseFormat::toArray(),
+            'timestampGranularities' => TimestampGranularity::toArray(),
         ]);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created Transcription.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param TranscriptionStoreRequest $request
+     * @return View
      */
-    public function store(Request $request)
+    public function store(TranscriptionStoreRequest $request): View
     {
-        $fileName = $request->file('file')->store('import-files');
-
-        DB::transaction(function () use ($request, $fileName){
-
-            Transcription::query()->create([
-                'user_id'       => auth()->id(),
-                'name'          => $request->get('name'),
-                'file_name'     => $fileName,
-                'Transcription' => '',
-            ]);
-        });
+        $this->transcriptionService->createTranscription($request->validated(), $request->user());
 
         return view('transcriptions.index');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified Transcription.
      *
-     * @param  \App\Models\Transcription  $transcription
-     * @return \Illuminate\Http\Response
+     * @param Transcription $transcription
+     * @return View
      */
-    public function destroy(Transcription $transcription)
+    public function destroy(Transcription $transcription): View
     {
+        $this->transcriptionService->deleteTranslation($transcription, request()->user());
+
         return view('transcriptions.index');
     }
 }

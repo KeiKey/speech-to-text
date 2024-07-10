@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -12,7 +13,9 @@
                             @csrf
 
                             <div class="row mb-3">
-                                <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Transcription name') }}</label>
+                                <label for="name" class="col-md-4 col-form-label text-md-end">
+                                    {{ __('Transcription name') }}
+                                </label>
 
                                 <div class="col-md-6">
                                     <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="Transcription name" autofocus>
@@ -26,12 +29,14 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label for="language" class="col-md-4 col-form-label text-md-end">{{ __('Language') }}</label>
+                                <label for="language" class="col-md-4 col-form-label text-md-end">
+                                    {{ __('Language') }} <i class="bi bi-info-circle-fill"></i>
+                                </label>
 
                                 <div class="col-md-6">
                                     <select class="form-select form-control-rounded" id="language" name="language" required>
-                                        @foreach($languages as $language)
-                                            <option value="{{ $language->value }}">{{ $language->name }}</option>
+                                        @foreach($languages as $languageLabel => $language)
+                                            <option value="{{ $language }}">{{ $languageLabel }}</option>
                                         @endforeach
                                     </select>
 
@@ -44,7 +49,9 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label for="prompt" class="col-md-4 col-form-label text-md-end">{{ __('Prompt') }}</label>
+                                <label for="prompt" class="col-md-4 col-form-label text-md-end">
+                                    {{ __('Prompt') }} <i class="bi bi-info-circle-fill"></i>
+                                </label>
 
                                 <div class="col-md-6">
                                     <input id="prompt" type="text" class="form-control @error('prompt') is-invalid @enderror" name="prompt" value="{{ old('prompt') }}">
@@ -58,12 +65,14 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label for="response_format" class="col-md-4 col-form-label text-md-end">{{ __('Response Format') }}</label>
+                                <label for="response_format" class="col-md-4 col-form-label text-md-end">
+                                    {{ __('Response Format') }} <i class="bi bi-info-circle-fill"></i>
+                                </label>
 
                                 <div class="col-md-6">
                                     <select class="form-select form-control-rounded" id="response_format" name="response_format" required>
-                                        @foreach($responseFormats as $responseFormat)
-                                            <option value="{{ $responseFormat->value }}">{{ $responseFormat->name }}</option>
+                                        @foreach($responseFormats as $responseFormatLabel => $responseFormat)
+                                            <option value="{{ $responseFormat }}">{{ $responseFormatLabel }}</option>
                                         @endforeach
                                     </select>
 
@@ -76,7 +85,9 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label for="temperature" class="col-md-4 col-form-label text-md-end">{{ __('Temperature') }}</label>
+                                <label for="temperature" class="col-md-4 col-form-label text-md-end">
+                                    {{ __('Temperature') }} <i class="bi bi-info-circle-fill"></i>
+                                </label>
 
                                 <div class="col-md-6">
                                     <input id="temperature" type="number" class="form-control @error('temperature') is-invalid @enderror" name="temperature" value="{{ old('temperature') }}">
@@ -90,12 +101,14 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label for="timestamp_granularity" class="col-md-4 col-form-label text-md-end">{{ __('Timestamp granularity') }}</label>
+                                <label for="timestamp_granularity" class="col-md-4 col-form-label text-md-end">
+                                    {{ __('Timestamp granularity') }} <i class="bi bi-info-circle-fill"></i>
+                                </label>
 
                                 <div class="col-md-6">
                                     <select class="form-select form-control-rounded" id="timestamp_granularity" name="timestamp_granularity" required>
-                                        @foreach($timestampGranularities as $timestampGranularity)
-                                            <option value="{{ $timestampGranularity->value }}">{{ $timestampGranularity->name }}</option>
+                                        @foreach($timestampGranularities as $timestampGranularityLabel => $timestampGranularity)
+                                            <option value="{{ $timestampGranularity }}">{{ $timestampGranularityLabel }}</option>
                                         @endforeach
                                     </select>
 
@@ -108,7 +121,9 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label for="file" class="col-md-4 col-form-label text-md-end">{{ __('File') }}</label>
+                                <label for="file" class="col-md-4 col-form-label text-md-end">
+                                    {{ __('File') }} <i class="bi bi-info-circle-fill"></i>
+                                </label>
 
                                 <div class="col-md-6">
                                     <input id="file" type="file" class="form-control @error('file') is-invalid @enderror" name="file" required>

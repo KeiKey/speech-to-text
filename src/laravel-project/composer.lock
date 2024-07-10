@@ -1035,7 +1035,7 @@
             "dist": {
                 "type": "path",
                 "url": "../packages/whisper-utils",
-                "reference": "cb2092b72b3e4a5831858634da16c035d76dbd28"
+                "reference": "1217df4efff9c578024f211024ee901e8a2d8279"
             },
             "require": {
                 "illuminate/support": "*",
@@ -7985,9 +7985,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "keikey/whisper-utils": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

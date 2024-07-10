@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-10">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
                         {{ __('Translations') }}
@@ -17,11 +17,15 @@
                         <table class="table">
                             <thead>
                             <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">{{ __('Name') }}</th>
-                                <th scope="col">{{ __('File') }}</th>
-                                <th scope="col">{{ __('Transcription') }}</th>
-                                <th scope="col">{{ __('Action') }}</th>
+                                <th>#</th>
+                                <th>{{ __('Name') }}</th>
+                                <th>{{ __('File Name') }}</th>
+                                <th>{{ __('File') }}</th>
+                                <th>{{ __('Translation') }}</th>
+                                <th>{{ __('Prompt') }}</th>
+                                <th>{{ __('Response Format') }}</th>
+                                <th>{{ __('Temperature') }}</th>
+                                <th>{{ __('Action') }}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -29,7 +33,14 @@
                                 <tr>
                                     <th scope="row">{{ $translation->id }}</th>
                                     <td>{{ $translation->name }}</td>
-                                    <td>{{ $translation->name }}</td>
+                                    <td>{{ $translation->file_name }}</td>
+                                    <td>download the file here</td>
+                                    <td>
+                                        <a href="{{ route('translations.download', $translation) }}" class="btn btn-sm btn-primary">{{ __('Download Translation') }}</a>
+                                    </td>
+                                    <td>{{ $translation->prompt }}</td>
+                                    <td>{{ $translation->response_format }}</td>
+                                    <td>{{ $translation->temperature }}</td>
                                     <td class="d-flex justify-content-start">
                                         <form action="{{ route('translations.destroy', $translation) }}" method="POST">
                                             @csrf

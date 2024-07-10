@@ -43,9 +43,9 @@
                                 <label for="response_format" class="col-md-4 col-form-label text-md-end">{{ __('Response Format') }}</label>
 
                                 <div class="col-md-6">
-                                    <select class="form-select form-control-rounded" id="response_format" name="response_format" required>
-                                        @foreach($responseFormats as $responseFormat)
-                                            <option value="{{ $responseFormat->value }}">{{ $responseFormat->name }}</option>
+                                    <select class="form-select form-control-rounded" id="response_format" name="response_format">
+                                        @foreach($responseFormats as $responseFormatLabel => $responseFormat)
+                                            <option value="{{ $responseFormat }}">{{ $responseFormatLabel }}</option>
                                         @endforeach
                                     </select>
 

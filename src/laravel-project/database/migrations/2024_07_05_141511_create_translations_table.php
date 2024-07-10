@@ -15,9 +15,14 @@ class CreateTranslationsTable extends Migration
     {
         Schema::create('translations', function (Blueprint $table) {
             $table->id();
+
             $table->unsignedBigInteger('user_id');
             $table->string('name');
+            $table->string('prompt')->nullable();
+            $table->string('response_format');
+            $table->string('temperature');
             $table->string('file_name');
+            $table->string('file_path');
             $table->json('translation')->nullable();
             $table->timestamps();
 

@@ -4,23 +4,43 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+/**
+ * @property int id
+ * @property int user_id
+ * @property string name
+ * @property string prompt
+ * @property string response_format
+ * @property string temperature
+ * @property string file_name
+ * @property string file_path
+ * @property string translation
+ * @property Carbon created_at
+ * @property Carbon updated_at
+ */
 class Translation extends Model
 {
     use HasFactory;
 
     /**
      * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
      */
     protected $fillable = [
         'user_id',
         'name',
         'file_name',
+        'file_path',
         'translation',
+        'prompt',
+        'response_format',
+        'temperature',
+    ];
+
+    protected $casts = [
+        'translation' => 'json',
     ];
 
     /**
@@ -41,7 +61,7 @@ class Translation extends Model
      */
     public function delete(): ?bool
     {
-        Storage::delete($this->file_name);
+        Storage::delete($this->file_path);
 
         return parent::delete();
     }

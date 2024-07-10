@@ -15,9 +15,16 @@ class CreateTranscriptionsTable extends Migration
     {
         Schema::create('transcriptions', function (Blueprint $table) {
             $table->id();
+
             $table->unsignedBigInteger('user_id');
             $table->string('name');
+            $table->string('language');
+            $table->string('prompt')->nullable();
+            $table->string('response_format');
+            $table->string('temperature');
+            $table->string('timestamp_granularity');
             $table->string('file_name');
+            $table->string('file_path');
             $table->json('transcription')->nullable();
             $table->timestamps();
 

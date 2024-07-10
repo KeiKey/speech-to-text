@@ -24,4 +24,6 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('translations', TranslationController::class)->except(['edit', 'update', 'show']);
     Route::resource('transcriptions', TranscriptionController::class)->except(['edit', 'update', 'show']);
+
+    Route::get('translations/download/{translation}', [TranslationController::class, 'download'])->name('translations.download');
 });
